@@ -1,9 +1,22 @@
 import math
-from main import get_state_format
+import torch
 import numpy as np
 import ludopy
+from ludopy.visualizer import *
+from torchvision import transforms as T
+
 EPS = 1e-8
 
+def get_state_format(moment):
+    state = draw_basic_board()
+    draw_moment(state, moment)
+    state = np.transpose(state, (2, 0, 1))
+    # print(state.shape)
+    state = torch.tensor(state).float()
+    resize_fn = T.Resize((128, 128))
+    state_resized = resize_fn(state)
+    # state_resized = np.transpose(state_resized, (1, 2, 0))
+    return state_resized
 
 
 class MCTS():

@@ -87,7 +87,7 @@ if __name__ == "__main__":
     #create env
     environment = ludopy.Game()
     #create agent
-    agent = DQN(state_dim=(128, 128, 3), action_dim=4)
+    agent = DQN(environment, state_dim=(128, 128, 3), action_dim=4)
     #create logging
     logger = Logger(use_tensorboard=True, log_dir=LOGDIR)
     #call learning loop
